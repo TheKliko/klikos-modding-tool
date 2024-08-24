@@ -1,0 +1,133 @@
+@font-face {
+    font-family: "Monsterrat";
+    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Jura";
+    src: url("../fonts/Jura/Jura-VariableFont_wght.ttf");
+}
+
+:root {
+    --theme-color: #f20041;
+
+    --header-color: #fcfcfc;
+    --header-height: 32px;
+    --header-padding: 16px;
+
+
+    --footer-color: #25262b;
+    --footer-text: #fcb652;
+    --footer-url: #959595;
+    --footer-url-hover: #c9c9c9;
+    --footer-padding: 64px;
+
+
+    --section-padding-x: 88px;
+    --section-padding-y: 64px;
+    --section-color: #fcfcfc;
+
+
+
+    --text-color: #333;
+    --text-color-2: #ededed;
+    --text-secondary-color: #9c9b99;
+    --font: "Monsterrat";
+
+    --icon-shadow: rgba(98, 101, 105, 0.2) 0px 4px 4px;
+    --button-shadow: rgba(0, 0, 0, 0.35) 0px 4px 4px;
+    --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+
+#hero-section {
+    height: 65vh;
+    background: linear-gradient(15deg, #cbcbcb, var(--section-color)) no-repeat;
+}
+.darkmode #hero-section {
+    background: linear-gradient(15deg, #050505, var(--section-color)) no-repeat;
+}
+#hero-section .content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 64px;
+    align-items: center;
+    justify-items: center;
+}
+
+#hero-section h2 {
+    margin-bottom: 12px;
+    font-size: 2.5rem;
+}
+#hero-section p {
+    margin: 0;
+    text-align: center;
+}
+#hero-section img {
+    width: 410px;
+    height: 410px;
+    filter: drop-shadow(rgb(34, 34, 34) 4px 2px 4px);
+}
+#hero-section .button-list {
+    margin-top: 26px;
+}
+#hero-section .content > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#explanation ul, #explanation ol {
+    margin: 0;
+    margin-top: -16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+#explanation .content p:first-of-type {
+    margin-top: -16px;
+}
+#explanation p:not(:last-child) {
+    margin-bottom: 32px;
+}
+
+#explanation iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: solid 1px black;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    background-color: #1f1f1f;
+}
+
+#preview iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+#preview .iframe-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+#requirements .content p:first-of-type {
+    margin-top: -8px;
+}
+#requirements ul, #explanation ol {
+    margin: 0;
+    margin-top: -16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+
+h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
