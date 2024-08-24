@@ -1,4 +1,4 @@
-const website_version = '1.0.0';
+const website_version = '1.0.1';
 
 window.onload = function onload() {
     var version_container = document.getElementById('website-version');
@@ -40,9 +40,5 @@ function hamburger_menu_toggle() {
 };
 
 function mobile_device() {
-    return window.innerWidth <= 1368;
+    return window.innerWidth <= 1068;
 };
-
-function download_now() {
-    
-}
