@@ -48,6 +48,5 @@ After completing these steps, go to where you extracted the updater tool and run
     <li><a href="https://www.python.org/downloads/">Python 3.12 or higher</a></li>
 </ul>
 <br>
-<br>
 <h2 id="help">Help & Support</h2>
 If you are having any issues, feel free to ask them in my <a href="https://discord.gg/nEjUwdSP9P">support server</a>.
