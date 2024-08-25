@@ -12,8 +12,8 @@
 <h3>Automatic Mod Updates</h3>
 
 
-This tool automatically updates your mods to the latest Roblox version.
-Designed for mod developers but easy enough for anyone to use.
+This tool automatically updates your mods to the latest version of Roblox!
+Made for mod developers, but it can be used by anyone.
 
 
 
