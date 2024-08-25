@@ -14,16 +14,40 @@
 
 This tool automatically updates your mods to the latest version of Roblox!
 Made for mod developers, but it can be used by anyone.
-
-
-
+<br>
+<br>
 <h2 id="instructions">Instructions</h2>
-An explanation of how everything works can be found <a href="https://thekliko.github.io/klikos-mod-updater/#explanation">here</a>
+<em>(A full explanation of how this program works can be found <a href="https://thekliko.github.io/klikos-mod-updater/#explanation">here</a>)</em>
+<br></br>
 
+<ul>
+    <li>
+        Download and extract the <a href="https://github.com/TheKliko/klikos-mod-updater/releases/latest">latest release</a>
+    </li>
+    <li>
+        Make sure that the mod you want to update is properly formatted (<a href="https://i.imgur.com/swY0id5.png">example</a>)
+    </li>
+    <li>
+        Go to the root folder of the mod that you want to update
+    </li>
+    <li>
+        Create a new file named `info.json` and add the following data, remember to replace "version-xxxxxxx" with the Roblox version that your mod was made/updated for.
+    </li>
+</ul>
 
+```json
+    {"clientVersionUpload":"version-xxxxxxx"}
+```
 
+After completing these steps, go to where you extracted the updater tool and run mod_updater.py
+<br>
+<br>
 <h2 id="requirements">Requirements</h2>
 <ul>
     <li>A Windows PC</li>
     <li><a href="https://www.python.org/downloads/">Python 3.12 or higher</a></li>
 </ul>
+<br>
+<br>
+<h2 id="help">Help & Support</h2>
+If you are having any issues, feel free to ask them in my <a href="https://discord.gg/nEjUwdSP9P">support server</a>.
