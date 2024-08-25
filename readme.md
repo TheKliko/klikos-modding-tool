@@ -17,6 +17,11 @@ Designed for mod developers but easy enough for anyone to use.
 
 
 
+<h2 id="instructions">Instructions</h2>
+An explanation of how everything works can be found <a href="https://thekliko.github.io/klikos-mod-updater/#explanation">here</a>
+
+
+
 <h2 id="requirements">Requirements</h2>
 <ul>
     <li>A Windows PC</li>
