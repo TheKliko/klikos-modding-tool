@@ -118,7 +118,7 @@ def main() -> None:
                     break
 
                 check_iteration_count(i)
-                # If 25 iterations have occured, ask for confirmation to continue
+                # If 100 iterations have occured, ask for confirmation to continue
                 # This shouldn't normally happen, unless:
                 #   - Your mod is *very* outdated
                 #   - A matching Studio doesn't exit (yet).
@@ -218,7 +218,7 @@ def main() -> None:
 
 
 def check_iteration_count(iteration: int) -> None:
-    if iteration % 25 == 0 and iteration != 0:
+    if iteration % 100 == 0 and iteration != 0:
         print()
         print(f'{iteration} versions have been checked, but no match was found (yet).')
         print('Do you still wish to continue? [Y/N]')
