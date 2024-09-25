@@ -192,7 +192,7 @@ def run(window: Window) -> None:
             window.add_divider()
             window.update()
 
-            if mode.lower() == "paranoid" or mode.lower() == "bath_paranoid":
+            if mode.lower() == "paranoid" or mode.lower() == "batch_paranoid":
                 root: str = path.dirname(path.dirname(path.dirname(path.dirname(path.dirname(__file__)))))
                 mods.update_paranoid(mods_for_this_version, temp_directory, version, root)
             else:
