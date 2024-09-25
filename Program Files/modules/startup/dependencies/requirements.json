@@ -1,0 +1,12 @@
+{
+    "normal": [
+        "certifi",
+        "charset_normalizer",
+        "idna",
+        "requests",
+        "urllib3"
+    ],
+    "version_specific": [
+        "pillow"
+    ]
+}
