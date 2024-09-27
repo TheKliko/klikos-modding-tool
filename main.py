@@ -49,8 +49,6 @@ def main() -> None:
         options: list[str] = [
             "Exit",
             "Update Mods",
-            "Extract Icons",
-            "Generate ImageSets",
             f"Mod Generator {interface.get_foreground(interface.Color.WARNING)}[EXPERIMENTAL]",
             "Settings"
         ]
@@ -88,15 +86,9 @@ def main() -> None:
                 sections.mod_updater.run(window)
             
             elif i == 3:
-                sections.imageset_extractor.run(window)
-            
-            elif i == 4:
-                sections.imageset_generator.run(window)
-            
-            elif i == 5:
                 sections.mod_generator.run(window)
             
-            elif i == 6:
+            elif i == 4:
                 sections.settings.run(window)
 
     except Exception as e:
