@@ -1,6 +1,6 @@
 <h1>
     <img src="GitHub Files/Images/logo.png" height="32" alt="logo"/>
-    Kliko's mod updater
+    Kliko's modding tool
 </h1>
 
 [<img alt="Website" src="https://img.shields.io/badge/website-353639?style=for-the-badge&logo=html5&logoColor=fff&labelColor=cc0037&color=353639">](https://thekliko.github.io/klikos-mod-updater)
@@ -10,10 +10,15 @@
 [<img alt="Discord" src="https://img.shields.io/discord/1205938827437412422?style=for-the-badge&logo=discord&logoColor=fff&label=discord&labelColor=5865f2&color=353639">](https://discord.gg/nEjUwdSP9P)
 
 <h3>Automatic Mod Updates</h3>
-
-
 This tool automatically updates your mods to the latest version of Roblox!
 Made for mod developers, but it can be used by anyone.
+
+<br>
+<br>
+
+<h3>Mod Generator [EXPERIMENTAL]</h3>
+Generate mods, currently only supports the image atlas.
+
 <br>
 <br>
 <h2 id="instructions">Instructions</h2>
