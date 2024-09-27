@@ -1,6 +1,6 @@
 <h1>
     <img src="GitHub Files/Images/logo.png" height="32" alt="logo"/>
-    Kliko's mod updater
+    Kliko's modding tool
 </h1>
 
 [<img alt="Website" src="https://img.shields.io/badge/website-353639?style=for-the-badge&logo=html5&logoColor=fff&labelColor=cc0037&color=353639">](https://thekliko.github.io/klikos-mod-updater)
