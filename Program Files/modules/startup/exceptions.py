@@ -1,2 +1,0 @@
-class CoreFilesMissing(Exception):
-    pass
