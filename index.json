@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Kliko's mod",
+        "author": "TheKliko",
+        "description": "Gradient mod: #990000 -> #ff006e",
+        "id": "klikos-mod"
+    },
+    {
+        "name": "Bloxstrap theme",
+        "author": "TheKliko",
+        "description": "Gradient mod: #a011fe -> #5460f9",
+        "id": "bloxstrap-theme-2"
+    },
+    {
+        "name": "Discord UI",
+        "author": "TheKliko",
+        "description": "Changes the icons to look like those found in Discord",
+        "id": "discord-ui"
+    },
+    {
+        "name": "Bloxstrap theme [Premium]",
+        "author": "TheKliko",
+        "description": "Gradient mod: #feaa17 -> #f95455",
+        "id": "bloxstrap-theme-premium"
+    },
+    {
+        "name": "UBFF Theme",
+        "author": "TheKliko",
+        "description": "Gradient mod: #648bd9 -> #fa94d7",
+        "id": "ubff-theme"
+    },
+    {
+        "name": "Deep Blue Theme",
+        "author": "TheKliko",
+        "description": "Gradient mod: #153860 -> #004ba7 -> #006ed7",
+        "id": "deep-blue-theme"
+    }
+]
