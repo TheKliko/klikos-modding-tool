@@ -23,15 +23,15 @@ class GitHubApi:
     
     @staticmethod
     def marketplace() -> str:
-        return r"https://raw.githubusercontent.com/TheKliko/klikos-modding-tool/refs/heads/remote-mod-downloads/index.json"
+        return r"https://raw.githubusercontent.com/TheKliko/klikos-modding-tool/refs/heads/remote-mod-download/index.json"
     
     @staticmethod
     def mod_thumbnail(mod_id: str) -> str:
-        return rf"https://raw.githubusercontent.com/TheKliko/klikos-modding-tool/refs/heads/remote-mod-downloads/thumbnails/{mod_id}.png"
+        return rf"https://raw.githubusercontent.com/TheKliko/klikos-modding-tool/refs/heads/remote-mod-download/thumbnails/{mod_id}.png"
     
     @staticmethod
     def mod_download(mod_id: str) -> str:
-        return rf"https://raw.githubusercontent.com/TheKliko/klikos-modding-tool/refs/heads/remote-mod-downloads/mods/{mod_id}.zip"
+        return rf"https://raw.githubusercontent.com/TheKliko/klikos-modding-tool/refs/heads/remote-mod-download/mods/{mod_id}.zip"
 
 
 # region RobloxApi

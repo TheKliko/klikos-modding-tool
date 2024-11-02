@@ -6,6 +6,20 @@
         "default": true,
         "type": "bool"
     },
+    "open_folder_after_update": {
+        "name": "Open folder after updates",
+        "description": "Open the \"Updated Mods\" folder after updating mods",
+        "value": false,
+        "default": false,
+        "type": "bool"
+    },
+    "open_folder_after_download": {
+        "name": "Open folder after downloads",
+        "description": "Open the \"Downloaded Mods\" folder after downloading mods",
+        "value": false,
+        "default": false,
+        "type": "bool"
+    },
     "user_channel": {
         "name": "User channel",
         "description": "The Roblox deployment channel that your mods will be updated for",

@@ -351,13 +351,228 @@ class MainWindow:
             ).grid(column=0, row=1, sticky="nsew")
         
         def load_content() -> None:
-            pass
+            frame: ctk.CTkFrame = ctk.CTkFrame(
+                self.content,
+                fg_color="transparent"
+            )
+            frame.grid_columnconfigure(0, weight=1)
+            frame.grid(column=0, row=1, sticky="nsew", padx=(0,10))
+            
+
             # TODO: Normal mode
+            item_frame: ctk.CTkFrame = ctk.CTkFrame(
+                frame
+            )
+            item_frame.grid_columnconfigure(0, weight=1)
+            item_frame.grid(column=0, row=0, sticky="nsew", pady=5)
+
+            name_frame: ctk.CTkFrame = ctk.CTkFrame(
+                item_frame,
+                fg_color="transparent"
+            )
+            name_frame.grid(column=0, row=0, sticky="nsew", padx=16, pady=16)
+            ctk.CTkLabel(
+                name_frame,
+                text="Normal mode",
+                anchor="w",
+                justify="left",
+                font=self.font_bold
+            ).grid(column=0, row=0, sticky="nsew")
+            ctk.CTkLabel(
+                name_frame,
+                text="Choose a mod to update",
+                anchor="w",
+                justify="left",
+                font=self.font_small
+            ).grid(column=0, row=1, sticky="nsew")
+
+            # Folder selection
+            folder_select_frame = ctk.CTkFrame(
+                item_frame,
+                fg_color="transparent"
+            )
+            folder_select_frame.grid(column=1, row=0, rowspan=2, padx=16, pady=16)
+
+            normal_mode_folder_stringvar = ctk.StringVar(value=None)
+            normal_mode_folder_entry = ctk.CTkEntry(
+                folder_select_frame,
+                width=300,
+                height=40
+            )
+            normal_mode_folder_entry.grid(column=0, row=0, sticky="nsew")
+            normal_mode_folder_entry.insert("end", "Choose a folder")
+            normal_mode_folder_entry.configure(state="disabled")
+
+            select_icon: str = os.path.join(Directory.root(), "resources", "menu", "common", "file_select.png")
+            if not os.path.isfile(select_icon):
+                try:
+                    restore_from_mei(select_icon)
+                except (FileRestoreError, PermissionError, FileNotFoundError):
+                    pass
+            ctk.CTkButton(
+                folder_select_frame,
+                text="",
+                image=load_image(
+                    light=select_icon,
+                    dark=select_icon,
+                    size=(24,24)
+                ),
+                width=44,
+                height=44
+            ).grid(column=2, row=0, padx=(16,0))
+
+            # Run button
+            run_icon: str = os.path.join(Directory.root(), "resources", "menu", "common", "run.png")
+            if not os.path.isfile(run_icon):
+                try:
+                    restore_from_mei(run_icon)
+                except (FileRestoreError, PermissionError, FileNotFoundError):
+                    pass
+            ctk.CTkButton(
+                item_frame,
+                text="",
+                image=load_image(
+                    light=run_icon,
+                    dark=run_icon,
+                    size=(24,24)
+                ),
+                width=44,
+                height=44
+            ).grid(column=2, row=0, padx=16, pady=16)
+
 
             # TODO: Batch mode
+            item_frame: ctk.CTkFrame = ctk.CTkFrame(
+                frame
+            )
+            item_frame.grid_columnconfigure(0, weight=1)
+            item_frame.grid(column=0, row=1, sticky="nsew", pady=5)
+
+            name_frame: ctk.CTkFrame = ctk.CTkFrame(
+                item_frame,
+                fg_color="transparent"
+            )
+            name_frame.grid(column=0, row=0, sticky="nsew", padx=16, pady=16)
+            ctk.CTkLabel(
+                name_frame,
+                text="Batch mode",
+                anchor="w",
+                justify="left",
+                font=self.font_bold
+            ).grid(column=0, row=0, sticky="nsew")
+            ctk.CTkLabel(
+                name_frame,
+                text="Update multiple mods at once",
+                anchor="w",
+                justify="left",
+                font=self.font_small
+            ).grid(column=0, row=1, sticky="nsew")
+
+            # Folder selection
+            folder_select_frame = ctk.CTkFrame(
+                item_frame,
+                fg_color="transparent"
+            )
+            folder_select_frame.grid(column=1, row=0, rowspan=2, padx=16, pady=16)
+
+            batch_mode_folder_stringvar = ctk.StringVar(value=None)
+            batch_mode_folder_entry = ctk.CTkEntry(
+                folder_select_frame,
+                width=300,
+                height=40
+            )
+            batch_mode_folder_entry.grid(column=0, row=0, sticky="nsew")
+            batch_mode_folder_entry.insert("end", "Choose a folder")
+            batch_mode_folder_entry.configure(state="disabled")
+
+            select_icon: str = os.path.join(Directory.root(), "resources", "menu", "common", "file_select.png")
+            if not os.path.isfile(select_icon):
+                try:
+                    restore_from_mei(select_icon)
+                except (FileRestoreError, PermissionError, FileNotFoundError):
+                    pass
+            ctk.CTkButton(
+                folder_select_frame,
+                text="",
+                image=load_image(
+                    light=select_icon,
+                    dark=select_icon,
+                    size=(24,24)
+                ),
+                width=44,
+                height=44
+            ).grid(column=2, row=0, padx=(16,0))
+
+            # Run button
+            run_icon: str = os.path.join(Directory.root(), "resources", "menu", "common", "run.png")
+            if not os.path.isfile(run_icon):
+                try:
+                    restore_from_mei(run_icon)
+                except (FileRestoreError, PermissionError, FileNotFoundError):
+                    pass
+            ctk.CTkButton(
+                item_frame,
+                text="",
+                image=load_image(
+                    light=run_icon,
+                    dark=run_icon,
+                    size=(24,24)
+                ),
+                width=44,
+                height=44
+            ).grid(column=2, row=0, padx=16, pady=16)
+
 
             # TODO: Bloxstrap mode
-            # bloxstrap_mode.run()
+            localappdata: str | None = os.getenv("LOCALAPPDATA")
+            if localappdata is not None:
+                if os.path.isfile(os.path.join(Directory.bloxstrap_mods(), "info.json")):
+                    item_frame: ctk.CTkFrame = ctk.CTkFrame(
+                        frame
+                    )
+                    item_frame.grid_columnconfigure(0, weight=1)
+                    item_frame.grid(column=0, row=2, sticky="nsew", pady=5)
+
+                    name_frame: ctk.CTkFrame = ctk.CTkFrame(
+                        item_frame,
+                        fg_color="transparent"
+                    )
+                    name_frame.grid(column=0, row=0, sticky="nsew", padx=16, pady=16)
+                    ctk.CTkLabel(
+                        name_frame,
+                        text="Bloxstrap mode",
+                        anchor="w",
+                        justify="left",
+                        font=self.font_bold
+                    ).grid(column=0, row=0, sticky="nsew")
+                    ctk.CTkLabel(
+                        name_frame,
+                        text="Update your Bloxstrap mods",
+                        anchor="w",
+                        justify="left",
+                        font=self.font_small
+                    ).grid(column=0, row=1, sticky="nsew")
+
+                    # Run button
+                    run_icon: str = os.path.join(Directory.root(), "resources", "menu", "common", "run.png")
+                    if not os.path.isfile(run_icon):
+                        try:
+                            restore_from_mei(run_icon)
+                        except (FileRestoreError, PermissionError, FileNotFoundError):
+                            pass
+                    ctk.CTkButton(
+                        item_frame,
+                        text="",
+                        image=load_image(
+                            light=run_icon,
+                            dark=run_icon,
+                            size=(24,24)
+                        ),
+                        width=44,
+                        height=44
+                    ).grid(column=2, row=0, padx=16, pady=16)
+                    
+                    # bloxstrap_mode.run()
 
         self.active_section = "mod-updater"
         destroy()
@@ -530,7 +745,7 @@ class MainWindow:
         load_content()
     
     def _mod_download(self, mod_id: str, mod_name: str) -> None:
-        if os.path.isdir(os.path.join(Directory.mods(), mod_name)):
+        if os.path.isdir(os.path.join(Directory.downloaded_mods(), mod_name)):
             if not messagebox.askokcancel(ProjectData.NAME, f"A mod with the same name already exists!\nDo you wish to overwrite it?"):
                 return
 
