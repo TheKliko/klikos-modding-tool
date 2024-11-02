@@ -23,6 +23,10 @@ class Directory:
         return os.path.join(Directory.root(), "Downloaded Mods")
 
     @staticmethod
+    def bloxstrap_mods() -> str:
+        return os.path.join(os.getenv("LOCALAPPDATA"), "Bloxstrap", "Modifications")
+
+    @staticmethod
     def updated_mods() -> str:
         return os.path.join(Directory.root(), "Updated Mods")
 

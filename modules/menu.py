@@ -352,6 +352,12 @@ class MainWindow:
         
         def load_content() -> None:
             pass
+            # TODO: Normal mode
+
+            # TODO: Batch mode
+
+            # TODO: Bloxstrap mode
+            # bloxstrap_mode.run()
 
         self.active_section = "mod-updater"
         destroy()
