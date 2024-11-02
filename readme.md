@@ -16,8 +16,10 @@ Made for mod developers, but it can be used by anyone.
 <br>
 <br>
 
-<h3>Mod Generator [EXPERIMENTAL]</h3>
+<h3>Mod Generator [DISCONINUED]</h3>
 Generate mods, currently only supports the image atlas. Generate either a mod of 1 color or a horizontal gradient of 2 colors.
+
+**Currently no longer included**. Might add it back later after making it better.
 
 <br>
 <br>
