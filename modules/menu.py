@@ -359,7 +359,7 @@ class MainWindow:
             frame.grid(column=0, row=1, sticky="nsew", padx=(0,10))
             
 
-            # TODO: Normal mode
+            # region Normal mode
             item_frame: ctk.CTkFrame = ctk.CTkFrame(
                 frame
             )
@@ -418,7 +418,8 @@ class MainWindow:
                     size=(24,24)
                 ),
                 width=44,
-                height=44
+                height=44,
+                command=lambda: self._choose_folder(entry=normal_mode_folder_entry, stringvar=normal_mode_folder_stringvar)
             ).grid(column=2, row=0, padx=(16,0))
 
             # Run button
@@ -441,7 +442,7 @@ class MainWindow:
             ).grid(column=2, row=0, padx=16, pady=16)
 
 
-            # TODO: Batch mode
+            # region Batch mode
             item_frame: ctk.CTkFrame = ctk.CTkFrame(
                 frame
             )
@@ -500,7 +501,8 @@ class MainWindow:
                     size=(24,24)
                 ),
                 width=44,
-                height=44
+                height=44,
+                command=lambda: self._choose_folder(entry=batch_mode_folder_entry, stringvar=batch_mode_folder_stringvar)
             ).grid(column=2, row=0, padx=(16,0))
 
             # Run button
@@ -523,7 +525,7 @@ class MainWindow:
             ).grid(column=2, row=0, padx=16, pady=16)
 
 
-            # TODO: Bloxstrap mode
+            # region Bloxstrap mode
             localappdata: str | None = os.getenv("LOCALAPPDATA")
             if localappdata is not None:
                 if os.path.isfile(os.path.join(Directory.bloxstrap_mods(), "info.json")):
@@ -578,6 +580,28 @@ class MainWindow:
         destroy()
         load_header()
         load_content()
+    
+
+    def _choose_folder(self, entry: ctk.CTkEntry, stringvar: ctk.StringVar) -> None:
+        user_profile: str | None = os.getenv("HOME") or os.getenv("USERPROFILE")
+        if user_profile:
+            downloads_dir: str | None = os.path.join(user_profile, "Downloads")
+        else:
+            downloads_dir = None
+        initial_dir: str = downloads_dir if downloads_dir is not None else user_profile if user_profile is not None else os.path.abspath(os.sep)
+
+        target: str|None = filedialog.askdirectory(
+            initialdir=initial_dir,
+            title="Select a folder"
+        )
+        if target == "" or not target:
+            return
+        
+        entry.configure(state="normal")
+        entry.delete(0, "end")
+        entry.insert("end", os.path.basename(target))
+        entry.configure(state="disabled")
+        stringvar.set(target)
     
 
 
