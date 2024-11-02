@@ -52,7 +52,6 @@ After completing these steps, go to where you extracted the updater tool and run
 <h2 id="requirements">Requirements</h2>
 <ul>
     <li>A Windows PC</li>
-    <li><a href="https://www.python.org/downloads/">Python 3.12 or higher</a></li>
 </ul>
 <br>
 <h2 id="help">Help & Support</h2>
