@@ -113,12 +113,17 @@ def check_file_content(file: str) -> None:
 def check_for_updates() -> None:
     logger.info("Checking for updates...")
     
-    response: request.Response = request.get(request.GitHubApi.latest_version(), attempts=1)
-    data: dict = response.json()
-    latest_version: str | None = data.get("latest")
-    if latest_version is None:
-        return
+    try:
+        response: request.Response = request.get(request.GitHubApi.latest_version(), attempts=1)
+        data: dict = response.json()
+        latest_version: str | None = data.get("latest")
+        if latest_version is None:
+            return
     
+    except Exception as e:
+        logger.error(f"Failed to check for updates! {type(e).__name__}: {e}")
+        return
+
     if latest_version > ProjectData.VERSION:
         logger.debug(f"A newer version is available: {latest_version}")
         if messagebox.askyesno(ProjectData.NAME, f"A newer version is available! Do you wish to update?"):
