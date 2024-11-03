@@ -41,7 +41,7 @@ class ProgressWindow(ctk.CTkToplevel):
     window_title: str = ProjectData.NAME
     window_icon: str | None = icon_path
 
-    def __init__(self, root: ctk.CTk, *args, no_root: bool = False, **kwargs) -> None:
+    def __init__(self, root: ctk.CTk, mod_count: int, *args, no_root: bool = False, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         self._no_root = no_root
@@ -61,7 +61,7 @@ class ProgressWindow(ctk.CTkToplevel):
 
         self.label: ctk.CTkLabel = ctk.CTkLabel(
             self,
-            text="Updating Bloxstrap mods"
+            text=f"Updating {mod_count} mods"
         )
         self.label.grid(column=0, row=0, padx=32, pady=(32,0))
 
@@ -110,7 +110,7 @@ class ProgressWindow(ctk.CTkToplevel):
         self.after(0, self._on_close)
 
 
-def run(root: Optional[ctk.CTk] = None) -> None:
+def run(mod_folder_path: str, root: Optional[ctk.CTk] = None) -> None:
     no_root: bool = False
     if root is None:
         no_root = True
@@ -132,14 +132,21 @@ def run(root: Optional[ctk.CTk] = None) -> None:
                 ctk.set_default_color_theme("blue")
             messagebox.showwarning(ProjectData.NAME, "Bad theme file!\nReverted to default theme")
 
-    logger.info("Updating Bloxstrap mods...")
+    
+    mods_to_check: list[str] = [
+        os.path.join(mod_folder_path, mod)
+        for mod in os.listdir(mod_folder_path)
+        if os.path.isfile(os.path.join(mod_folder_path, mod, "info.json"))
+    ]
+
+    logger.info(f"Updating mod: {len(mods_to_check)}...")
     exception_queue: queue.Queue = queue.Queue()
 
-    window = ProgressWindow(root, no_root=no_root)
+    window = ProgressWindow(root, len(mods_to_check), no_root=no_root)
     thread: threading.Thread = threading.Thread(
-        name="mod-updater-main-thread_bloxstrap-mode",
+        name="mod-updater-main-thread_normal-mode",
         target=worker,
-        args=(window, exception_queue),
+        args=(mods_to_check, window, exception_queue),
         daemon=True
     )
     thread.start()
@@ -152,28 +159,25 @@ def run(root: Optional[ctk.CTk] = None) -> None:
     messagebox.showinfo(ProjectData.NAME, "Mod update complete!")
 
 
-def worker(window: ProgressWindow, exception_queue: queue.Queue) -> None:
+def worker(mods_to_check: list[str], window: ProgressWindow, exception_queue: queue.Queue) -> None:
     try:
-        localappdata: str | None = os.getenv("LOCALAPPDATA")
-        if not localappdata:
-            raise FileNotFoundError("No such file or directory: %LOCALAPPDATA%")
-        
-        bloxstrap_mods_folder: str = Directory.bloxstrap_mods()
-        if not os.path.isfile(os.path.join(bloxstrap_mods_folder, "info.json")):
-            raise FileNotFoundError("No such file or or directory: info.json")
+        if not mods_to_check:
+            logger.info("No compatible mods found!")
+            messagebox.showinfo(ProjectData.NAME, "No compatible mods found!")
+            return
         
         latest_version: str = get_latest_version("WindowsPlayer")
-        check = mod_updater.check_for_mod_updates([bloxstrap_mods_folder], latest_version)
+        check = mod_updater.check_for_mod_updates(mods_to_check, latest_version)
         if not check:
             logger.info("No mod updates found!")
             messagebox.showinfo(ProjectData.NAME, "No mod updates found!")
             return
         
-        mod_updater.update_mods(check, latest_version, os.path.dirname(bloxstrap_mods_folder))
-        logger.info("Finished updating mods in Bloxstrap mode!")
+        mod_updater.update_mods(check, latest_version, Directory.updated_mods())
+        logger.info("Finished updating mods in normal mode!")
     
     except Exception as e:
-        logger.error(f"Failed to update mods in Bloxstrap mode! {type(e).__name__}: {e}")
+        logger.error(f"Failed to update mods in normal mode! {type(e).__name__}: {e}")
         exception_queue.put(e)
 
     finally:

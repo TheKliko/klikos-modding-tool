@@ -17,7 +17,7 @@ from modules.functions.get_latest_version import get_latest_version
 from modules.functions.marketplace_mod_download import marketplace_mod_download
 from modules import request
 from modules.request import GitHubApi, Response
-from modules import bloxstrap_mode
+from modules import normal_mode, batch_mode, bloxstrap_mode
 
 from tkinter import filedialog, messagebox
 import customtkinter as ctk
@@ -438,7 +438,8 @@ class MainWindow:
                     size=(24,24)
                 ),
                 width=44,
-                height=44
+                height=44,
+                command=lambda var=normal_mode_folder_stringvar: normal_mode.run(var.get(), self.root)
             ).grid(column=2, row=0, padx=16, pady=16)
 
 
@@ -521,7 +522,8 @@ class MainWindow:
                     size=(24,24)
                 ),
                 width=44,
-                height=44
+                height=44,
+                command=lambda var=batch_mode_folder_stringvar: batch_mode.run(var.get(), self.root)
             ).grid(column=2, row=0, padx=16, pady=16)
 
 
@@ -571,10 +573,9 @@ class MainWindow:
                             size=(24,24)
                         ),
                         width=44,
-                        height=44
+                        height=44,
+                        command=bloxstrap_mode.run
                     ).grid(column=2, row=0, padx=16, pady=16)
-                    
-                    # bloxstrap_mode.run()
 
         self.active_section = "mod-updater"
         destroy()

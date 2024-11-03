@@ -41,6 +41,8 @@ def update_mods(data: dict, latest_version: str, output_dir: str) -> None:
         
         for thread in threads:
             thread.join()
+        
+        logger.info("Mod update(s) complete!")
 
 
 

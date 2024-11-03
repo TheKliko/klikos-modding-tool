@@ -40,8 +40,7 @@ pyinstaller ..\main.py ^
 --paths="%root_path%" ^
 --paths="%libraries_path%" ^
 --add-data="%resources_path%;resources" ^
---add-data="%config_path%/settings.json;config" ^
---add-data="%config_path%/integrations.json;config"
+--add-data="%config_path%/settings.json;config"
 
 
 if exist "%dist_path%\%temp_name%.exe" (
