@@ -9,8 +9,8 @@
 [<img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/thekliko/klikos-mod-updater/latest/total?style=for-the-badge&label=downloads&labelColor=cc0037&color=353639">](https://github.com/thekliko/klikos-mod-updater/releases)
 [<img alt="Discord" src="https://img.shields.io/discord/1205938827437412422?style=for-the-badge&logo=discord&logoColor=fff&label=discord&labelColor=5865f2&color=353639">](https://discord.gg/nEjUwdSP9P)
 
-<h3>Automatic Mod Updates</h3>
-This tool automatically updates your mods to the latest version of Roblox!
+<h3>Mod Updater</h3>
+This tool can update your mods to the latest version of Roblox!
 Made for mod developers, but it can be used by anyone.
 
 <br>
