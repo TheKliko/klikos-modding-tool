@@ -41,6 +41,8 @@ class ProgressWindow(ctk.CTkToplevel):
     window_title: str = ProjectData.NAME
     window_icon: str | None = icon_path
 
+    _has_closed: bool = False
+
     def __init__(self, root: ctk.CTk, *args, no_root: bool = False, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
@@ -88,11 +90,14 @@ class ProgressWindow(ctk.CTkToplevel):
             self.stop_event.set()
 
     def _on_close(self) -> None:
+        if self._has_closed is True:
+            return
         self._set_stop_event()
         self.grab_release()
         self.destroy()
         if self._no_root:
             self.root.quit()
+        self._has_closed = True
 
     def show(self) -> None:
         self.attributes('-topmost', True)
@@ -160,12 +165,16 @@ def worker(window: ProgressWindow, exception_queue: queue.Queue) -> None:
         
         bloxstrap_mods_folder: str = Directory.bloxstrap_mods()
         if not os.path.isfile(os.path.join(bloxstrap_mods_folder, "info.json")):
-            raise FileNotFoundError("No such file or or directory: info.json")
+            logger.info("No such file or directory: info.json")
+            window.close()
+            messagebox.showinfo(ProjectData.NAME, "Incompatible mod!\nFile not found: info.json")
+            return
         
         latest_version: str = get_latest_version("WindowsPlayer")
         check = mod_updater.check_for_mod_updates([bloxstrap_mods_folder], latest_version)
         if not check:
             logger.info("No mod updates found!")
+            window.close()
             messagebox.showinfo(ProjectData.NAME, "No mod updates found!")
             return
         

@@ -9,11 +9,11 @@ import webbrowser
 from modules import error_handler
 from modules.logger import logger
 from modules.info import ProjectData, Hyperlink, LICENSES
+from modules import filesystem
 from modules.filesystem import Directory
 from modules.interface.images import load_image, load_image_from_url
 from modules.functions.restore_from_mei import restore_from_mei, FileRestoreError
 from modules.functions.config import settings
-from modules.functions.get_latest_version import get_latest_version
 from modules.functions.marketplace_mod_download import marketplace_mod_download
 from modules import request
 from modules.request import GitHubApi, Response
@@ -776,7 +776,10 @@ class MainWindow:
 
         try:
             marketplace_mod_download(self, mod_id, mod_name)
-            # messagebox.showinfo(ProjectData.NAME, "Mod downloaded successfully!")
+    
+            if settings.value("open_folder_after_download"):
+                messagebox.showinfo(ProjectData.NAME, "Mod downloaded successfully!")
+                filesystem.open(Directory.updated_mods())
 
         except Exception as e:
             logger.error(f"Failed to download mod \"{mod_id}\", reason: {type(e).__name__}: {e}")
