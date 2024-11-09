@@ -1,6 +1,6 @@
 class ProjectData:
     NAME: str = "Kliko's modding tool"
-    VERSION: str = "1.3.1"
+    VERSION: str = "1.3.2"
     DESCRIPTION: str = "Roblox mods made easy"
     AUTHOR: str = "TheKliko"
 
