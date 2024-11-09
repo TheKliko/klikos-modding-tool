@@ -35,8 +35,10 @@ def generate(temp_directory, mod: str, version: str, old_imageset_path: str, new
         for name in icons:
             if old_icon_map.get(size, {}).get(name) is None:
                 logger.warning(f"ImageSet generator, key not found in {size}: {name}")
+                continue
             if new_icon_map.get(size, {}).get(name) is None:
                 logger.warning(f"ImageSet generator, key not found in {size}: {name}")
+                continue
 
             old_data: dict = old_icon_map[size][name]
             new_data: dict = new_icon_map[size][name]
