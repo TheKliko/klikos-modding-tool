@@ -6,10 +6,12 @@ from typing import Optional
 
 from modules.logger import logger
 from modules.info import ProjectData
+from modules import filesystem
 from modules.filesystem import Directory
 from modules.functions.restore_from_mei import restore_from_mei
 from modules.functions.get_latest_version import get_latest_version
 from modules.functions import mod_updater
+from modules.functions.config import settings
 
 from tkinter import messagebox
 import customtkinter as ctk
@@ -40,6 +42,8 @@ class ProgressWindow(ctk.CTkToplevel):
 
     window_title: str = ProjectData.NAME
     window_icon: str | None = icon_path
+
+    _has_closed: bool = False
 
     def __init__(self, root: ctk.CTk, mod_count: int, *args, no_root: bool = False, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -88,11 +92,14 @@ class ProgressWindow(ctk.CTkToplevel):
             self.stop_event.set()
 
     def _on_close(self) -> None:
+        if self._has_closed is True:
+            return
         self._set_stop_event()
         self.grab_release()
         self.destroy()
         if self._no_root:
             self.root.quit()
+        self._has_closed = True
 
     def show(self) -> None:
         self.attributes('-topmost', True)
@@ -157,12 +164,15 @@ def run(mod_folder_path: str, root: Optional[ctk.CTk] = None) -> None:
         raise error
     
     messagebox.showinfo(ProjectData.NAME, "Mod update complete!")
+    if settings.value("open_folder_after_update"):
+        filesystem.open(Directory.updated_mods())
 
 
 def worker(mods_to_check: list[str], window: ProgressWindow, exception_queue: queue.Queue) -> None:
     try:
         if not mods_to_check:
             logger.info("No compatible mods found!")
+            window.close()
             messagebox.showinfo(ProjectData.NAME, "No compatible mods found!")
             return
         
@@ -170,6 +180,7 @@ def worker(mods_to_check: list[str], window: ProgressWindow, exception_queue: qu
         check = mod_updater.check_for_mod_updates(mods_to_check, latest_version)
         if not check:
             logger.info("No mod updates found!")
+            window.close()
             messagebox.showinfo(ProjectData.NAME, "No mod updates found!")
             return
         
