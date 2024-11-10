@@ -18,6 +18,7 @@ import customtkinter as ctk
 
 
 IS_FROZEN = getattr(sys, "frozen", False)
+hide_completion_window: bool = False
 
 icon_path_extension: str = os.path.join("resources", "favicon.ico")
 icon_path: str | None = os.path.join(Directory.root(), icon_path_extension)
@@ -169,11 +170,13 @@ def run(mod_folder_path: str, root: Optional[ctk.CTk] = None) -> None:
 
 
 def worker(mods_to_check: list[str], window: ProgressWindow, exception_queue: queue.Queue) -> None:
+    global hide_completion_window
     try:
         if not mods_to_check:
             logger.info("No compatible mods found!")
             window.close()
             messagebox.showinfo(ProjectData.NAME, "No compatible mods found!")
+            hide_completion_window = True
             return
         
         latest_version: str = get_latest_version("WindowsPlayer")
@@ -182,6 +185,7 @@ def worker(mods_to_check: list[str], window: ProgressWindow, exception_queue: qu
             logger.info("No mod updates found!")
             window.close()
             messagebox.showinfo(ProjectData.NAME, "No mod updates found!")
+            hide_completion_window = True
             return
         
         mod_updater.update_mods(check, latest_version, Directory.updated_mods())
