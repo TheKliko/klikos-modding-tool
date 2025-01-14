@@ -16,16 +16,12 @@ Made for mod developers, but it can be used by anyone.
 <br>
 <br>
 
-<h3>Mod Generator [DISCONTINUED]</h3>
-Generate mods, currently only supports the image atlas. Generate either a mod of 1 color or a horizontal gradient of 2 colors.
-
-**Currently no longer included**. Might add it back later after making it better.
+<h3>Mod Generator</h3>
+Generate mods, currently only supports the image atlas. Generate either a mod of 1 color or a gradient of 2 colors. Takes about 12 seconds depending on your hardware and internet speed
 
 <br>
 <br>
 <h2 id="instructions">Instructions</h2>
-<em>(A full explanation of how this program works can be found <a href="https://thekliko.github.io/klikos-mod-updater/#explanation">here</a>)</em>
-<br></br>
 
 <ul>
     <li>
@@ -51,7 +47,7 @@ After completing these steps, go to where you extracted the updater tool and run
 <br>
 <h2 id="requirements">Requirements</h2>
 <ul>
-    <li>A Windows PC</li>
+    <li>A Windows PC (Optional)</li>
 </ul>
 <br>
 <h2 id="help">Help & Support</h2>

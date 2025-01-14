@@ -1,14 +1,15 @@
 class ProjectData:
-    NAME: str = "Kliko's modding tool"
-    VERSION: str = "1.3.3"
-    DESCRIPTION: str = "Roblox mods made easy"
+    NAME: str = r"Kliko's modding tool"
+    DESCRIPTION: str = "A Python tool made for Roblox mod developers"
     AUTHOR: str = "TheKliko"
+    REPOSITORY: str = r"https://github.com/TheKliko/klikos-modding-tool"
+    VERSION: str = "1.4.0"
 
-
-class Hyperlink:
-    GITHUB: str = r"https://github.com/TheKliko/klikos-modding-tool"
-    LATEST_RELEASE: str = r"https://github.com/TheKliko/klikos-modding-tool/releases/latest"
+class Help:
     DISCORD: str = r"https://discord.gg/nEjUwdSP9P"
+    GITHUB: str = r"https://github.com/TheKliko/klikos-modding-tool"
+    RELEASES: str = r"https://github.com/TheKliko/klikos-modding-tool/releases"
+    LATEST_VERSION: str = r"https://github.com/TheKliko/klikos-modding-tool/releases/latest"
 
 
 LICENSES: list[dict] = [
