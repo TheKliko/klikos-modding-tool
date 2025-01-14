@@ -84,7 +84,7 @@ class MainWindow(ctk.CTk):
         self.geometry(self._get_geometry())
 
         # Default
-        self.Sections.about.show()
+        self.Sections.mod_updater.show()
     
 
     def _set_widget_focus(self, event) -> None:
