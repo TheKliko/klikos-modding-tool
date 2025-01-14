@@ -195,7 +195,7 @@ class MarketplaceSection:
     # The popup window freezes if I don't do it from within a thread
     def _download_mod(self, name: str, id: str) -> None:
         try:
-            target_path: Path = Directory.MODS / name
+            target_path: Path = Directory.OUTPUT_DIR / name
             if target_path.exists():
                 if not messagebox.askokcancel(ProjectData.NAME, "Another mod with the same name already exists!\nDo you wish to replace it?"):
                     return
