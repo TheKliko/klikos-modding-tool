@@ -152,7 +152,7 @@ class ModUpdaterSection:
             initial_dir = initial_dir / "Downloads"
 
         directory: str | Literal[''] = filedialog.askdirectory(
-            title=f"{ProjectData.NAME} | Import mods", initialdir=initial_dir,
+            title=f"{ProjectData.NAME} | Choose a mod", initialdir=initial_dir,
         )
 
         if directory == '':
