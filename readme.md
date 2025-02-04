@@ -23,6 +23,8 @@ Generate mods, currently only supports the image atlas. Generate either a mod of
 <br>
 <h2 id="instructions">Instructions</h2>
 
+> [!CAUTION]
+> Warning: If you are running the source code directly, make sure that you are using Python 3.12.4! Any other version may not work.
 <ul>
     <li>
         Download and extract the <a href="https://github.com/TheKliko/klikos-mod-updater/releases/latest">latest release</a>
