@@ -3,7 +3,7 @@ class ProjectData:
     DESCRIPTION: str = "A Python tool made for Roblox mod developers"
     AUTHOR: str = "TheKliko"
     REPOSITORY: str = r"https://github.com/TheKliko/klikos-modding-tool"
-    VERSION: str = "1.4.0"
+    VERSION: str = "1.4.1"
 
 class Help:
     DISCORD: str = r"https://discord.gg/nEjUwdSP9P"
