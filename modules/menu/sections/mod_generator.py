@@ -2,6 +2,7 @@ from pathlib import Path
 import re
 from tkinter import messagebox
 from threading import Thread
+import webbrowser
 
 from modules.info import ProjectData
 from modules import filesystem
@@ -121,18 +122,33 @@ class ModGeneratorSection:
         self.angle_entry.bind("<Control-s>", lambda _: self.root.focus())
         self.angle_entry.bind("<FocusOut>", lambda _: self._generate_preview())
 
+        possible_colors_frame: ctk.CTkFrame = ctk.CTkFrame(container, fg_color="transparent")
+        possible_colors_frame.grid(column=0, row=2, sticky="w", pady=(4, 0))
+        ctk.CTkLabel(possible_colors_frame, text="A list of available color formats can be found at ").grid(column=0, row=0)
+        url: str = r"https://pillow.readthedocs.io/en/stable/reference/ImageColor.html#color-names"
+        unhover_color: str | tuple[str ,str] = ("#0000EE", "#2fa8ff")
+        hover_color: str | tuple[str ,str] = ("#0000CC", "#58bbff")
+        hyperlink: ctk.CTkLabel = ctk.CTkLabel(possible_colors_frame, text=url, cursor="hand2", text_color=unhover_color)
+        hyperlink.bind("<Button-1>", lambda _: self._open_in_browser(url))
+        hyperlink.grid(column=1, row=0)
+        hyperlink.bind("<Enter>", lambda _: hyperlink.configure(text_color=hover_color))
+        hyperlink.bind("<Leave>", lambda _: hyperlink.configure(text_color=unhover_color))
+
         # Preview
         preview_frame: ctk.CTkFrame = ctk.CTkFrame(container, fg_color="transparent")
-        preview_frame.grid(column=0, row=2, sticky="nsew", pady=(16, 0))
+        preview_frame.grid(column=0, row=3, sticky="nsew", pady=(16, 0))
 
         ctk.CTkLabel(preview_frame, text="Preview", anchor="w", font=self.Fonts.bold).grid(column=0, row=0, sticky="w")
         self.preview_image = ctk.CTkLabel(preview_frame, text="", fg_color="#000", width=self.Constants.PREVIEW_SIZE, height=self.Constants.PREVIEW_SIZE)
         self.preview_image.grid(column=0, row=1, sticky="w")
         self._generate_preview(default=True)
 
+        # region TODO
+        # TODO: let user select additional files
+
         # Buttons
         buttons_frame: ctk.CTkFrame = ctk.CTkFrame(container, fg_color="transparent")
-        buttons_frame.grid(column=0, row=3, sticky="nsew", pady=(32, 0))
+        buttons_frame.grid(column=0, row=4, sticky="nsew", pady=(32, 0))
 
         run_icon: Path = (Directory.RESOURCES / "menu" / "common" / "image-run").with_suffix(".png")
         if not run_icon.is_file():
@@ -142,12 +158,16 @@ class ModGeneratorSection:
         ctk.CTkButton(buttons_frame, text="Generate mod", image=run_image, command=self._run, width=1, anchor="w", compound=ctk.LEFT).grid(column=0, row=0, sticky="w")
         
         # Progress label
-        ctk.CTkLabel(container, textvariable=self.progress_variable, anchor="w", font=self.Fonts.bold).grid(column=0, row=4, sticky="w", pady=(4, 0))
+        ctk.CTkLabel(container, textvariable=self.progress_variable, anchor="w", font=self.Fonts.bold).grid(column=0, row=5, sticky="w", pady=(4, 0))
 
     # endregion
 
 
     # region functions
+    def _open_in_browser(self, url: str) -> None:
+        webbrowser.open_new_tab(url)
+
+    
     def _generate_preview(self, default: bool = False) -> None:
         if default:
             self.default_image: Image.Image = get_mask(ImageColor.getcolor("black", "RGBA"), None, 0, size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE))
@@ -166,25 +186,31 @@ class ModGeneratorSection:
             try:
                 rgba_color1 = ImageColor.getcolor(color1, "RGBA")
             except Exception:
-                self.preview_image.configure(image=load_from_image(self.default_image, identifier=f"mod_generator_default_preview", size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE)))
-                return
+                try:
+                    rgba_color1 = ImageColor.getcolor(f"#{color1}", "RGBA")
+                except Exception:
+                    self.preview_image.configure(image=load_from_image(self.default_image, identifier=f"mod_generator_default_preview", size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE)))
+                    return
         
         if color2:
             try:
                 rgba_color2 = ImageColor.getcolor(color2, "RGBA")
             except Exception:
-                self.preview_image.configure(image=load_from_image(self.default_image, identifier=f"mod_generator_default_preview", size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE)))
-                return
+                try:
+                    rgba_color2 = ImageColor.getcolor(f"#{color2}", "RGBA")
+                except Exception:
+                    self.preview_image.configure(image=load_from_image(self.default_image, identifier=f"mod_generator_default_preview", size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE)))
+                    return
         else:
             rgba_color2 = None
         
-        if not angle or angle == "None":
+        if not angle or angle == "None" or angle == "-":
             angle = 0
         
         try:
             angle = int(angle)
-        except Exception:
-            self.preview_image.configure(image=load_from_image(self.default_image, identifier=f"mod_generator_default_preview", size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE)))
+        except Exception as e:
+            messagebox.showerror(ProjectData.NAME, f"Bad angle input!\n{type(e).__name__}: {e}")
             return
 
         image: Image.Image = get_mask(rgba_color1, rgba_color2, angle, size=(self.Constants.PREVIEW_SIZE, self.Constants.PREVIEW_SIZE))
@@ -220,19 +246,25 @@ class ModGeneratorSection:
             try:
                 rgba_color1 = ImageColor.getcolor(color1, "RGBA")
             except Exception as e:
-                messagebox.showwarning(ProjectData.NAME, f"Bad color 1 input!\n{type(e).__name__}: {e}")
-                return
+                try:
+                    rgba_color1 = ImageColor.getcolor(f"#{color1}", "RGBA")
+                except Exception:
+                    messagebox.showwarning(ProjectData.NAME, f"Bad color 1 input!\n{type(e).__name__}: {e}")
+                    return
         
         if color2:
             try:
                 rgba_color2 = ImageColor.getcolor(color2, "RGBA")
             except Exception as e:
-                messagebox.showwarning(ProjectData.NAME, f"Bad color 2 input!\n{type(e).__name__}: {e}")
-                return
+                try:
+                    rgba_color2 = ImageColor.getcolor(f"#{color2}", "RGBA")
+                except Exception:
+                    messagebox.showwarning(ProjectData.NAME, f"Bad color 2 input!\n{type(e).__name__}: {e}")
+                    return
         else:
             rgba_color2 = None
         
-        if not angle or angle == "None":
+        if not angle or angle == "None" or angle == "-":
             angle = 0
         
         try:
