@@ -3,7 +3,7 @@
     Kliko's modding tool
 </h1>
 
-[<img alt="Website" src="https://img.shields.io/badge/website-353639?style=for-the-badge&logo=html5&logoColor=fff&labelColor=cc0037&color=353639">](https://thekliko.github.io/klikos-mod-updater)
+[<img alt="Website" src="https://img.shields.io/badge/website-353639?style=for-the-badge&logo=html5&logoColor=fff&labelColor=cc0037&color=353639">](https://thekliko.github.io/klikos-modding-tool)
 [<img alt="GitHub License" src="https://img.shields.io/github/license/thekliko/klikos-mod-updater?style=for-the-badge&labelColor=cc0037&color=353639">](https://github.com/TheKliko/klikos-mod-updater/blob/main/LICENSE)
 [<img alt="GitHub Release" src="https://img.shields.io/github/v/release/thekliko/klikos-mod-updater?filter=!v*.*.*-beta&style=for-the-badge&labelColor=cc0037&color=353639">](https://github.com/thekliko/klikos-mod-updater/releases/latest)
 [<img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/thekliko/klikos-mod-updater/latest/total?style=for-the-badge&label=downloads&labelColor=cc0037&color=353639">](https://github.com/thekliko/klikos-mod-updater/releases)
