@@ -59,13 +59,15 @@ class Directories:
     ROOT: Path = (Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).parent.parent.parent).resolve()
     CRASHES: Path = ROOT / "Crashes"
     CONFIG: Path = ROOT / "config"
-    MODS: Path = ROOT / "Mods"
     MEIPASS: Optional[Path] = Path(sys._MEIPASS) if FROZEN else None  # type: ignore
     RESOURCES: Path = (MEIPASS if FROZEN else ROOT) / "resources"  # type: ignore
     MOD_GENERATOR_FILES: Path = RESOURCES / "mod_generator_files"
-    OUTPUT_DIR: Path = RESOURCES / "output"
+    OUTPUT_DIR: Path = ROOT / "output"
     OUTPUT_DIR_GENERATOR: Path = OUTPUT_DIR / "generator"
     OUTPUT_DIR_UPDATER: Path = OUTPUT_DIR / "updater"
+
+    BLOXSTRAP_MOD: Path = Path.home() / "AppData" / "Local" / "Bloxstrap" / "Modifications"
+    FISHSTRAP_MOD: Path = Path.home() / "AppData" / "Local" / "Fishstrap" / "Modifications"
 
     DOWNLOADS: Path = _get_downloads_directory().resolve()
 
@@ -90,17 +92,11 @@ class Resources:
             ATTENTION: Path = Directories.RESOURCES / "common" / "light" / "attention.png"
             INFO: Path = Directories.RESOURCES / "common" / "light" / "info.png"
             CLOSE: Path = Directories.RESOURCES / "common" / "light" / "close.png"
-            FOLDER: Path = Directories.RESOURCES / "common" / "light" / "folder.png"
             ARROW_RIGHT: Path = Directories.RESOURCES / "common" / "light" / "arrow_right.png"
-            DOWNLOAD: Path = Directories.RESOURCES / "common" / "light" / "download.png"
-            OPEN_EXTERNAL: Path = Directories.RESOURCES / "common" / "light" / "open_external.png"
             EYE: Path = Directories.RESOURCES / "common" / "light" / "eye.png"
-            CONFIGURE: Path = Directories.RESOURCES / "common" / "light" / "configure.png"
             ADD: Path = Directories.RESOURCES / "common" / "light" / "add.png"
             START: Path = Directories.RESOURCES / "common" / "light" / "start.png"
             RESET: Path = Directories.RESOURCES / "common" / "light" / "reset.png"
-            COPY: Path = Directories.RESOURCES / "common" / "light" / "copy.png"
-            UPLOAD: Path = Directories.RESOURCES / "common" / "light" / "upload.png"
             STOP: Path = Directories.RESOURCES / "common" / "light" / "stop.png"
         class Dark:
             BIN: Path = Directories.RESOURCES / "common" / "dark" / "bin.png"
@@ -110,17 +106,11 @@ class Resources:
             ATTENTION: Path = Directories.RESOURCES / "common" / "dark" / "attention.png"
             INFO: Path = Directories.RESOURCES / "common" / "dark" / "info.png"
             CLOSE: Path = Directories.RESOURCES / "common" / "dark" / "close.png"
-            FOLDER: Path = Directories.RESOURCES / "common" / "dark" / "folder.png"
             ARROW_RIGHT: Path = Directories.RESOURCES / "common" / "dark" / "arrow_right.png"
-            DOWNLOAD: Path = Directories.RESOURCES / "common" / "dark" / "download.png"
-            OPEN_EXTERNAL: Path = Directories.RESOURCES / "common" / "dark" / "open_external.png"
             EYE: Path = Directories.RESOURCES / "common" / "dark" / "eye.png"
-            CONFIGURE: Path = Directories.RESOURCES / "common" / "dark" / "configure.png"
             ADD: Path = Directories.RESOURCES / "common" / "dark" / "add.png"
             START: Path = Directories.RESOURCES / "common" / "dark" / "start.png"
             RESET: Path = Directories.RESOURCES / "common" / "dark" / "reset.png"
-            COPY: Path = Directories.RESOURCES / "common" / "dark" / "copy.png"
-            UPLOAD: Path = Directories.RESOURCES / "common" / "dark" / "upload.png"
             STOP: Path = Directories.RESOURCES / "common" / "dark" / "stop.png"
 
     class Navigation:

@@ -10,7 +10,7 @@ from random import randint
 from modules.project_data import ProjectData
 from ..windows import ModGeneratorPreviewWindow
 from modules.frontend.widgets import ScrollableFrame, Frame, Label, Button, DropDownMenu, Entry, CheckBox, ColorPicker, ask_color
-from modules.frontend.functions import get_ctk_image, crop_to_fit
+from modules.frontend.functions import get_ctk_image
 from modules.localization import Localizer
 from modules.filesystem import Resources, Directories
 from modules.interfaces.config import ConfigInterface

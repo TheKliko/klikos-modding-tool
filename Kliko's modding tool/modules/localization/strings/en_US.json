@@ -36,6 +36,22 @@
     "menu.mod_updater.content.normal_mode": "Normal mode",
     "menu.mod_updater.content.bloxstrap_mode": "Bloxstrap mode",
     "menu.mod_updater.content.fishstrap_mode": "Fishstrap mode",
+    "menu.mod_updater.content.button.update": "Update",
+    "menu.mod_updater.content.button.updating": "Updating...",
+
+    "menu.mod_updater.filedialog.title": "{app.name} | Mod Selector",
+
+    "menu.mod_updater.success.title.update": "Mod updated successfully!",
+    "menu.mod_updater.success.message.update": "\"{mod.name}\" has been added to the output directory",
+    "menu.mod_updater.success.message.update_bloxstrap": "Your Bloxstrap Modifications folder has been updated",
+    "menu.mod_updater.success.message.update_fishstrap": "Your Fishstrap Modifications folder has been updated",
+
+    "menu.mod_updater.exception.title.unknown": "Something went wrong!",
+    "menu.mod_updater.exception.title.update": "Unable to update mod!",
+
+    "menu.mod_updater.exception.message.not_outdated": "No outdated mod found!",
+    "menu.mod_updater.exception.message.updater_busy": "Another mod is already being updated. Please wait for the current mod to finish before updating a new one.",
+    "menu.mod_updater.exception.message.unknown": "{exception.type}: {exception.message}",
 
 
 
@@ -110,7 +126,7 @@
     "menu.settings.content.check_for_updates.title": "Check for Updates",
     "menu.settings.content.check_for_updates.description": "Check for updates when launching {app.name}",
     "menu.settings.content.open_dir_after_update.title": "Open Folder after Update",
-    "menu.settings.content.open_dir_after_update.description": "Open the output directory after updating a mod",
+    "menu.settings.content.open_dir_after_update.description": "Open the output directory after updating a mod, only active on normal mode",
     "menu.settings.content.open_dir_after_generate.title": "Open Folder after Generate",
     "menu.settings.content.open_dir_after_generate.description": "Open the output directory after generating a mod",
 
