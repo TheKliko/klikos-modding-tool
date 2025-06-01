@@ -1,5 +1,5 @@
 <h1>
-    <img src="GitHub Files/Images/logo.png" height="32" alt="logo"/>
+    <img src="images/logo.png" height="32" alt="logo"/>
     Kliko's modding tool
 </h1>
 
