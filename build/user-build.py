@@ -4,7 +4,7 @@ from pathlib import Path
 import shutil
 
 
-EXECUTABLE_NAME: str = "Kliko's modloader"
+EXECUTABLE_NAME: str = "Kliko's modding tool"
 REQUIRED_PYTHON_VERSION: str = "3.12.4"
 LIBRARIES: list[str] = [
     "customtkinter~=5.2.2",
@@ -26,8 +26,8 @@ class PathObject:
     BUILD: Path = Path(__file__).parent.resolve()
     BIN: Path = BUILD / "bin"
     TEMP: Path = BUILD / "temp"
-    SOURCE: Path = BUILD.parent / "Kliko's modloader"
-    SPEC_PATH: Path = TEMP / "Kliko's modloader.spec"
+    SOURCE: Path = BUILD.parent / "Kliko's modding tool"
+    SPEC_PATH: Path = TEMP / "Kliko's modding tool.spec"
     TEMP_SOURCE: Path = TEMP / "source"
     MODULES: Path = TEMP_SOURCE / "modules"
     LIBRARIES: Path = TEMP_SOURCE / "libraries"
@@ -76,7 +76,7 @@ exe = EXE(
     splash,
     splash.binaries,
     [],
-    name="Kliko's modloader.exe",
+    name="Kliko's modding tool.exe",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
