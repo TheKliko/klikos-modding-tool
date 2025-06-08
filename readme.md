@@ -36,12 +36,16 @@ Generate mods, currently only supports the image atlas. Generate either a mod of
         Go to the root folder of the mod that you want to update
     </li>
     <li>
-        Create a new file named `info.json` and add the following data, remember to replace "version-xxxxxxx" with the Roblox version that your mod was made/updated for.
+        Create a new file named `info.json` and add either the file version or the version GUID that your mod was made for (file version is checked first, if it's not found then it checks for the GUID). The right format can be found in the example data below
     </li>
 </ul>
 
+Example data for info.json
 ```json
-    {"clientVersionUpload":"version-xxxxxxx"}
+{
+    "fileVersion": 676,
+    "clientVersionUpload": "version-e1da58b32b1c4d64"
+}
 ```
 
 After completing these steps, go to where you extracted the updater tool and run mod_updater.py
