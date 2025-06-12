@@ -119,4 +119,63 @@ class Api:
 
                 return rf"https://setup.rbxcdn.com/{version_guid}-{file}"
         # endregion
+
+        # region Activity
+        class Activity:
+            """
+            Stores all Roblox API endpoints related to Discord RPC.
+            
+            Methods:
+                universe_id(place_id: str) -> str:
+                    Returns the API endpoint to retrieve the universe ID of the specified game.
+                game(universe_id: str) -> str:
+                    Returns the API endpoint to retrieve information on the specified game.
+                thumbnail(universe_id: str, size: str = "512x512", circular: bool = False) -> str:
+                    Returns the API endpoint to retrieve the thumbnail of the specified game.
+            """
+
+            @staticmethod
+            def universe_id(place_id: str) -> str:
+                """
+                Returns the API endpoint to retrieve the universe ID of the specified game.
+
+                Parameters:
+                    place_id (str): The ID of the Roblox place.
+
+                Returns:
+                    str: The URL for the universe ID API endpoint.
+                """
+
+                return rf"https://apis.roblox.com/universes/v1/places/{place_id}/universe"
+
+            @staticmethod
+            def game(universe_id: str) -> str:
+                """
+                Returns the API endpoint to retrieve information on the specified game.
+
+                Parameters:
+                    universe_id (str): The ID of the Roblox universe.
+
+                Returns:
+                    str: The URL for the game info API endpoint.
+                """
+
+                return rf"https://games.roblox.com/v1/games?universeIds={universe_id}"
+
+            @staticmethod
+            def thumbnail(universe_id: str, size: str = "512x512", circular: bool = False) -> str:
+                """
+                Returns the API endpoint to retrieve the thumbnail of the specified game.
+
+                Parameters:
+                    universe_id (str): The ID of the Roblox universe.
+                    size (str): The size of the thumbnail (example: "512x512").
+                    circular (bool): Whether the thumbnail should be circular.
+
+                Returns:
+                    str: The URL for the game thumbnail API endpoint.
+                """
+                
+                return rf"https://thumbnails.roblox.com/v1/games/icons?universeIds={universe_id}&returnPolicy=PlaceHolder&size={size}&format=Png&isCircular={str(circular).lower()}"
+        # endregion
     # endregion

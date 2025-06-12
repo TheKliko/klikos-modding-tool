@@ -59,6 +59,8 @@ class Directories:
     ROOT: Path = (Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).parent.parent.parent).resolve()
     CRASHES: Path = ROOT / "Crashes"
     CONFIG: Path = ROOT / "config"
+    CACHE: Path = ROOT / "cache"
+    SHORTCUTS_CACHE: Path = CACHE / "shortcuts"
     MEIPASS: Optional[Path] = Path(sys._MEIPASS) if FROZEN else None  # type: ignore
     RESOURCES: Path = (MEIPASS if FROZEN else ROOT) / "resources"  # type: ignore
     MOD_GENERATOR_FILES: Path = RESOURCES / "mod_generator_files"
@@ -74,6 +76,8 @@ class Directories:
 
 class Files:
     CONFIG: Path = Directories.CONFIG / "config.json"
+    SHORTCUTS_CONFIG: Path = Directories.CONFIG / "shortcuts.json"
+    SHORTCUTS_CACHE_INDEX: Path = Directories.SHORTCUTS_CACHE / "index.json"
 
 
 class Resources:
@@ -117,13 +121,21 @@ class Resources:
         class Light:
             MOD_UPDATER: Path = Directories.RESOURCES / "nav" / "light" / "mod_updater.png"
             MOD_GENERATOR: Path = Directories.RESOURCES / "nav" / "light" / "mod_generator.png"
+            SHORTCUTS: Path = Directories.RESOURCES / "nav" / "light" / "shortcuts.png"
             SETTINGS: Path = Directories.RESOURCES / "nav" / "light" / "settings.png"
             ABOUT: Path = Directories.RESOURCES / "nav" / "light" / "about.png"
         class Dark:
             MOD_UPDATER: Path = Directories.RESOURCES / "nav" / "dark" / "mod_updater.png"
             MOD_GENERATOR: Path = Directories.RESOURCES / "nav" / "dark" / "mod_generator.png"
+            SHORTCUTS: Path = Directories.RESOURCES / "nav" / "dark" / "shortcuts.png"
             SETTINGS: Path = Directories.RESOURCES / "nav" / "dark" / "settings.png"
             ABOUT: Path = Directories.RESOURCES / "nav" / "dark" / "about.png"
+
+    class Shortcuts:
+        class Light:
+            PLACEHOLDER: Path = Directories.RESOURCES / "shortcuts" / "light" / "placeholder.png"
+        class Dark:
+            PLACEHOLDER: Path = Directories.RESOURCES / "shortcuts" / "dark" / "placeholder.png"
 
     class Brands:
         class Light:
