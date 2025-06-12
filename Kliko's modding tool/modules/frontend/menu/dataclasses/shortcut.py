@@ -42,6 +42,7 @@ class Shortcut:
         self.name = actual_data["name"]
         self.creator = actual_data["creator"]["name"]
         self.place_id = actual_data["rootPlaceId"]
+        if isinstance(self.place_id, int): self.place_id = str(self.place_id)
 
         response = requests.get(Api.Roblox.Activity.thumbnail(self.universe_id))
         data = response.json()
@@ -60,6 +61,7 @@ class Shortcut:
 
         with open(Files.SHORTCUTS_CACHE_INDEX) as file:
             data: dict = json.load(file)
+        print(type(self.place_id), self.place_id)
         item: dict | None = data.get(self.place_id)
         if not item:
             return self._attempt_thumbnail_download()
