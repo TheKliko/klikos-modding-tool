@@ -61,7 +61,6 @@ class Shortcut:
 
         with open(Files.SHORTCUTS_CACHE_INDEX) as file:
             data: dict = json.load(file)
-        print(type(self.place_id), self.place_id)
         item: dict | None = data.get(self.place_id)
         if not item:
             return self._attempt_thumbnail_download()
