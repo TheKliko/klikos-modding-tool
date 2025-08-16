@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> I am officially ending development for my modding tool,
+> thank you all for your support ❤️
+
 <h1>
     <img src="images/logo.png" height="32" alt="logo"/>
     Kliko's modding tool
@@ -58,3 +62,4 @@ After completing these steps, go to where you extracted the updater tool and run
 <br>
 <h2 id="help">Help & Support</h2>
 If you are having any issues, feel free to ask them in my <a href="https://discord.gg/nEjUwdSP9P">support server</a>.
+
